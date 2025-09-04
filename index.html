@@ -43,17 +43,19 @@ body {
   font-size:3rem; color:white;
   cursor:pointer;
   z-index:10;
-  animation: latido 2s ease-in-out infinite alternate,
-             balanceo 4s ease-in-out infinite alternate,
-             brillo 3s ease-in-out infinite alternate;
   text-align:center;
+  /* Solo animación de brillo, latido muy suave y sin balanceo horizontal */
+  animation: latido 1.8s ease-in-out infinite alternate,
+             brillo 3s ease-in-out infinite alternate;
+  will-change: transform;
 }
 .carta:hover{
-  transform: scale(1.1) rotate(0deg);
+  transform: scale(1.08);
   box-shadow:0 0 80px rgba(255,117,143,1), inset 0 0 30px rgba(255,255,255,0.4);
 }
-@keyframes latido {0%{transform:scale(1);}50%{transform:scale(1.08);}100%{transform:scale(1);}}
-@keyframes balanceo {0%{transform:translateX(0px) rotate(-2deg);}50%{transform:translateX(5px) rotate(2deg);}100%{transform:translateX(0px) rotate(-2deg);} }
+@keyframes latido {0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);}}
+@keyframes brillo {0%{box-shadow:0 0 40px rgba(255,117,143,0.5), inset 0 0 20px rgba(255,255,255,0.2);}50%{box-shadow:0 0 70px rgba(255,117,143,0.8), inset 0 0 30px rgba(255,255,255,0.4);}100%{box-shadow:0 0 40px rgba(255,117,143,0.5), inset 0 0 20px rgba(255,255,255,0.2);}}
+
 @keyframes brillo {0%{box-shadow:0 0 40px rgba(255,117,143,0.5), inset 0 0 20px rgba(255,255,255,0.2);}50%{box-shadow:0 0 80px rgba(255,117,143,0.9), inset 0 0 35px rgba(255,255,255,0.4);}100%{box-shadow:0 0 40px rgba(255,117,143,0.5), inset 0 0 20px rgba(255,255,255,0.2);} }
 
 .carta .corazon-corner {
@@ -231,4 +233,5 @@ carta.addEventListener("click",()=>{
 </script>
 </body>
 </html>
+
 

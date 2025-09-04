@@ -50,27 +50,28 @@ body {
 
 /* Carta */
 .carta {
-  width:320px; height:230px;
+  width:90%; max-width:320px; height:auto; padding:40px 0;
   position:relative;
   border-radius:25px;
   background: linear-gradient(135deg, var(--rosa1), var(--rosa2));
   box-shadow: 0 0 50px rgba(255,117,143,0.7), inset 0 0 25px rgba(255,255,255,0.3);
   display:flex; justify-content:center; align-items:center;
-  font-size:2.5rem; color:white;
+  font-size:3rem; color:white;
   cursor:pointer;
   z-index:10;
   animation: latido 2s ease-in-out infinite alternate,
              balanceo 4s ease-in-out infinite alternate,
              brillo 3s ease-in-out infinite alternate;
   transition: all 0.3s ease;
+  text-align:center;
 }
 .carta:hover{
   transform: scale(1.1) rotate(0deg);
   box-shadow:0 0 80px rgba(255,117,143,1), inset 0 0 30px rgba(255,255,255,0.4);
 }
 @keyframes latido {0%{transform:scale(1);}50%{transform:scale(1.08);}100%{transform:scale(1);}}
-@keyframes balanceo {0%{transform:translateX(0px) rotate(-2deg);}50%{transform:translateX(5px) rotate(2deg);}100%{transform:translateX(0px) rotate(-2deg);}}
-@keyframes brillo {0%{box-shadow:0 0 40px rgba(255,117,143,0.5), inset 0 0 20px rgba(255,255,255,0.2);}50%{box-shadow:0 0 80px rgba(255,117,143,0.9), inset 0 0 35px rgba(255,255,255,0.4);}100%{box-shadow:0 0 40px rgba(255,117,143,0.5), inset 0 0 20px rgba(255,255,255,0.2);}}
+@keyframes balanceo {0%{transform:translateX(0px) rotate(-2deg);}50%{transform:translateX(5px) rotate(2deg);}100%{transform:translateX(0px) rotate(-2deg);} }
+@keyframes brillo {0%{box-shadow:0 0 40px rgba(255,117,143,0.5), inset 0 0 20px rgba(255,255,255,0.2);}50%{box-shadow:0 0 80px rgba(255,117,143,0.9), inset 0 0 35px rgba(255,255,255,0.4);}100%{box-shadow:0 0 40px rgba(255,117,143,0.5), inset 0 0 20px rgba(255,255,255,0.2);} }
 
 .carta .corazon-corner {
   position:absolute;
@@ -87,20 +88,22 @@ body {
   top:50%; left:50%;
   transform:translate(-50%,-50%);
   background:rgba(0,0,0,0.85);
-  padding:35px 45px;
+  padding:25px 20px;
   border-radius:25px;
   text-align:center;
-  max-width:700px;
+  max-width:90%;
+  width:450px;
   display:none;
   color:var(--rosa4);
   box-shadow:0 0 70px rgba(255,117,143,1), inset 0 0 30px rgba(255,255,255,0.2);
   font-family: 'Poppins', sans-serif;
   animation: aparecer 0.8s ease forwards;
   z-index:20;
+  overflow-wrap: break-word;
 }
-@keyframes aparecer {from{opacity:0; transform:translate(-50%,-55%) scale(0.8);}to{opacity:1; transform:translate(-50%,-50%) scale(1);}}
-.contenido h1 {color:var(--rosa2);text-shadow:0 0 20px var(--rosa3),0 0 35px var(--rosa1);margin-bottom:20px;font-size:2.3rem;}
-.contenido p {font-size:1.35rem; line-height:1.8;margin-bottom:15px;}
+@keyframes aparecer {from{opacity:0; transform:translate(-50%,-55%) scale(0.8);}to{opacity:1; transform:translate(-50%,-50%) scale(1);} }
+.contenido h1 {color:var(--rosa2);text-shadow:0 0 20px var(--rosa3),0 0 35px var(--rosa1);margin-bottom:20px;font-size:2rem; word-break: break-word;}
+.contenido p {font-size:1rem; line-height:1.6; margin-bottom:12px; text-align:center;}
 
 /* Corazones y partículas */
 .particle{
@@ -111,13 +114,20 @@ body {
   filter: drop-shadow(0 0 8px rgba(255,255,255,0.7));
   animation: colorPulse 2s infinite alternate;
 }
-@keyframes fall {0%{transform:translateY(-10vh) scale(var(--s,1)) rotate(var(--r,0deg));opacity:1;}100%{transform:translateY(110vh) scale(var(--s,1)) rotate(calc(var(--r,0deg)+var(--dr,360deg)));opacity:0;}}
-@keyframes popUp {0%{transform:translate(-50%,-50%) scale(0.5);opacity:1;}100%{transform:translate(calc(-50%+var(--dx,0px)),calc(-50%+var(--dy,0px))) scale(1.6);opacity:0;}}
-@keyframes colorPulse {0%{color:#ff4d6d;}50%{color:#ffb3c1;}100%{color:#ff758f;}}
+@keyframes fall {0%{transform:translateY(-10vh) scale(var(--s,1)) rotate(var(--r,0deg));opacity:1;}100%{transform:translateY(110vh) scale(var(--s,1)) rotate(calc(var(--r,0deg)+var(--dr,360deg)));opacity:0;} }
+@keyframes popUp {0%{transform:translate(-50%,-50%) scale(0.5);opacity:1;}100%{transform:translate(calc(-50%+var(--dx,0px)),calc(-50%+var(--dy,0px))) scale(1.6);opacity:0;} }
+@keyframes colorPulse {0%{color:#ff4d6d;}50%{color:#ffb3c1;}100%{color:#ff758f;} }
 
 /* Corazones flotando alrededor carta */
 .floating-heart {position:absolute;font-size:18px;animation:float 4s ease-in-out infinite alternate;opacity:0.9;}
 @keyframes float {0%{transform:translate(0,0) scale(1);}50%{transform:translate(0,-18px) scale(1.25);}100%{transform:translate(0,0) scale(1);}}
+
+/* Ajustes responsive móviles */
+@media (max-width:500px){
+  .carta {font-size:2.2rem; padding:30px 0; max-width:280px;}
+  .contenido {font-size:0.95rem; padding:20px 15px; width:85%;}
+  .contenido h1 {font-size:1.6rem;}
+}
 </style>
 </head>
 <body>
@@ -130,10 +140,11 @@ body {
 <div class="contenido" id="contenido">
   <h1>Para ti Sofi 💖</h1>
   <p>Eres la luz de mis ojos, la razón por la que cada día despierto con una sonrisa.  
-    Conocerte fue el regalo más hermoso que la vida me pudo dar, justo cuando más necesitaba alguien que iluminara mi camino.</p>
+  Conocerte fue el regalo más hermoso que la vida me pudo dar, justo cuando más necesitaba alguien que iluminara mi camino.</p>
 
   <p>Te amo tal y como eres, adoro tu risa, tu mirada, cada detalle que te hace única.  
-    Te quiero tal y como eres nunca te pediría que cambies nada porque ante mis ojos eres perfecta. Cada momento contigo es un regalo.</p>
+  Te quiero tal y como eres, nunca te pediría que cambies nada porque ante mis ojos eres perfecta. Cada momento contigo es un regalo, y mi corazón late más fuerte solo por ti.</p>
+
   <p><strong>Te amo con todo mi ser 💕</strong></p>
 </div>
 
@@ -165,11 +176,11 @@ function crearCorazonFlotante(){
 }
 
 function crearParticulaLluvia(){
-  for(let i=0;i<5;i++){ // más partículas
+  for(let i=0;i<5;i++){
     const el=document.createElement('span');
     el.className='particle';
     el.textContent=choice(simbolos);
-    el.style.fontSize=rand(25,50)+'px'; // más grandes
+    el.style.fontSize=rand(25,50)+'px';
     el.style.fontWeight=900;
     el.style.color=choice(colores);
     el.style.left=rand(0,window.innerWidth)+'px';
@@ -206,7 +217,7 @@ function crearDestellosFondo(){
   el.className='background-particle';
   el.style.left=rand(0,window.innerWidth)+'px';
   el.style.top=rand(0,window.innerHeight)+'px';
-  el.style.setProperty('--dx',rand(-80,80)+'px'); // más movimiento
+  el.style.setProperty('--dx',rand(-80,80)+'px');
   el.style.setProperty('--dy',rand(-80,80)+'px');
   el.style.width=rand(4,8)+'px';
   el.style.height=rand(4,8)+'px';
@@ -215,25 +226,26 @@ function crearDestellosFondo(){
   setTimeout(()=>el.remove(),10000);
 }
 
-setInterval(crearParticulaLluvia,120); // más frecuente
+setInterval(crearParticulaLluvia,120);
 setInterval(crearCorazonFlotante,400);
 setInterval(crearDestellosFondo,300);
 
 function activarMusica(){
   if(!musicaIniciada){
-    musica.play().catch(()=>{});
-    musicaIniciada=true;
+    musica.play().catch(()=>{
+    });
+    musicaIniciada = true;
   }
 }
 
-carta.addEventListener("click",()=>{
+carta.addEventListener("click", () => {
   if(abierta) return;
   activarMusica();
-  crearExplosion(window.innerWidth/2,window.innerHeight/2);
-  setTimeout(()=>{
-    carta.style.display='none';
-    contenido.style.display='block';
-  },400);
+  crearExplosion(window.innerWidth/2, window.innerHeight/2);
+  setTimeout(() => {
+    carta.style.display = 'none';
+    contenido.style.display = 'block';
+  }, 400); // esperar a que la explosión se vea
 });
 </script>
 </body>

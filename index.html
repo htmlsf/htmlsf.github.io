@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>💌</title>
+<title>💌💌</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --rosa1: #ff4d6d;
-  --rosa2: #ff758f;
-  --rosa3: #ffb3c1;
-  --rosa4: #ffe0eb;
+  --rosa1:#ff4d6d;
+  --rosa2:#ff758f;
+  --rosa3:#ffb3c1;
+  --rosa4:#ffe0eb;
 }
 
 *{margin:0; padding:0; box-sizing:border-box;}
@@ -18,44 +18,45 @@
 body {
   height:100vh; width:100vw;
   display:flex; justify-content:center; align-items:center;
+  font-family:'Poppins', sans-serif;
+  position:relative;
   overflow:hidden;
-  font-family: 'Poppins', sans-serif;
-  position: relative;
-  background: linear-gradient(-45deg, #ff758f, #ffb3c1, #ffe0eb, #ff4d6d);
+  background: linear-gradient(-45deg,#ff758f,#ffb3c1,#ffe0eb,#ff4d6d);
   background-size: 400% 400%;
   animation: gradientAnim 20s ease infinite;
 }
 
 @keyframes gradientAnim {
-  0% {background-position:0% 50%;}
-  50% {background-position:100% 50%;}
-  100% {background-position:0% 50%;}
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
 
 /* Carta */
 .carta {
-  width:320px; 
-  height:230px;
+  width:320px; height:230px;
   position:relative;
   border-radius:25px;
-  background: linear-gradient(135deg, var(--rosa1), var(--rosa2));
-  box-shadow: 0 0 50px rgba(255,117,143,0.7), inset 0 0 25px rgba(255,255,255,0.3);
+  background:linear-gradient(135deg,var(--rosa1),var(--rosa2));
+  box-shadow:0 0 50px rgba(255,117,143,0.7), inset 0 0 25px rgba(255,255,255,0.3);
   display:flex; justify-content:center; align-items:center;
   font-size:3rem; color:white;
   cursor:pointer;
   z-index:10;
   text-align:center;
-  /* Solo animación de brillo, sin latido ni scale */
   animation: brillo 3s ease-in-out infinite alternate;
   will-change: box-shadow;
 }
 
-@keyframes brillo {
-  0%{box-shadow:0 0 40px rgba(255,117,143,0.5), inset 0 0 20px rgba(255,255,255,0.2);}
-  50%{box-shadow:0 0 70px rgba(255,117,143,0.8), inset 0 0 30px rgba(255,255,255,0.4);}
-  100%{box-shadow:0 0 40px rgba(255,117,143,0.5), inset 0 0 20px rgba(255,255,255,0.2);}
+.carta:hover{
+  box-shadow:0 0 80px rgba(255,117,143,1), inset 0 0 30px rgba(255,255,255,0.4);
 }
 
+@keyframes brillo{
+  0%{box-shadow:0 0 40px rgba(255,117,143,0.5), inset 0 0 20px rgba(255,255,255,0.2);}
+  50%{box-shadow:0 0 70px rgba(255,117,143,0.9), inset 0 0 35px rgba(255,255,255,0.4);}
+  100%{box-shadow:0 0 40px rgba(255,117,143,0.5), inset 0 0 20px rgba(255,255,255,0.2);}
+}
 
 .carta .corazon-corner {
   position:absolute;
@@ -72,7 +73,7 @@ body {
   top:50%; left:50%;
   transform:translate(-50%,-50%);
   background:rgba(0,0,0,0.85);
-  padding:20px 15px;
+  padding:25px 20px;
   border-radius:25px;
   text-align:center;
   max-width:90%;
@@ -81,14 +82,15 @@ body {
   display:none;
   color:var(--rosa4);
   box-shadow:0 0 70px rgba(255,117,143,1), inset 0 0 30px rgba(255,255,255,0.2);
-  font-family: 'Poppins', sans-serif;
-  animation: aparecer 0.8s ease forwards;
+  font-family:'Poppins', sans-serif;
+  animation: aparecer 0.4s ease forwards; /* apertura más rápida */
   z-index:20;
-  overflow-y:auto; /* permite scroll en móviles */
+  overflow-y:auto;
 }
-@keyframes aparecer {from{opacity:0; transform:translate(-50%,-55%) scale(0.8);}to{opacity:1; transform:translate(-50%,-50%) scale(1);} }
-.contenido h1 {color:var(--rosa2);text-shadow:0 0 20px var(--rosa3),0 0 35px var(--rosa1);margin-bottom:20px;font-size:2rem; word-break: break-word;}
-.contenido p {font-size:1rem; line-height:1.6; margin-bottom:12px; text-align:center; word-break: break-word;}
+@keyframes aparecer {from{opacity:0; transform:translate(-50%,-55%) scale(0.85);}to{opacity:1; transform:translate(-50%,-50%) scale(1);}}
+
+.contenido h1{color:var(--rosa2);text-shadow:0 0 20px var(--rosa3),0 0 35px var(--rosa1);margin-bottom:20px;font-size:2rem; word-break: break-word;}
+.contenido p{font-size:1rem; line-height:1.6; margin-bottom:12px; text-align:center; word-break: break-word;}
 
 /* Corazones y partículas */
 .particle{
@@ -96,20 +98,24 @@ body {
   user-select:none;
   pointer-events:none;
   z-index:1;
-  filter: drop-shadow(0 0 8px rgba(255,255,255,0.7));
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.8));
 }
-@keyframes fall {0%{transform:translateY(-10vh) scale(var(--s,1)) rotate(var(--r,0deg));opacity:1;}100%{transform:translateY(110vh) scale(var(--s,1)) rotate(calc(var(--r,0deg)+var(--dr,360deg)));opacity:0;} }
-@keyframes popUp {0%{transform:translate(-50%,-50%) scale(0.5);opacity:1;}100%{transform:translate(calc(-50%+var(--dx,0px)),calc(-50%+var(--dy,0px))) scale(1.6);opacity:0;} }
 
-/* Corazones flotando alrededor carta */
+@keyframes fall {0%{transform:translateY(-10vh) scale(var(--s,1)) rotate(var(--r,0deg));opacity:1;}100%{transform:translateY(110vh) scale(var(--s,1)) rotate(calc(var(--r,0deg)+var(--dr,360deg)));opacity:0;}}
+
+@keyframes popUp {0%{transform:translate(-50%,-50%) scale(0.5);opacity:1;}100%{transform:translate(calc(-50%+var(--dx,0px)),calc(-50%+var(--dy,0px))) scale(1.6);opacity:0;}}
+
+@keyframes colorPulse {0%{color:#ff4d6d;}50%{color:#ffb3c1;}100%{color:#ff758f;}}
+
+/* Partículas flotantes de corazón */
 .floating-heart {position:absolute;font-size:18px;animation:float 4s ease-in-out infinite alternate;opacity:0.9;}
-@keyframes float {0%{transform:translate(0,0) scale(1);}50%{transform:translate(0,-18px) scale(1.25);}100%{transform:translate(0,0) scale(1);}}
+@keyframes float{0%{transform:translate(0,0) scale(1);}50%{transform:translate(0,-18px) scale(1.25);}100%{transform:translate(0,0) scale(1);}}
 
-/* Ajustes responsive móviles */
-@media (max-width:500px){
-  .carta {font-size:2.2rem; padding:25px 0; max-width:85%;}
-  .contenido {font-size:0.95rem; padding:15px 10px; width:90%;}
-  .contenido h1 {font-size:1.6rem;}
+/* Ajustes responsive */
+@media(max-width:500px){
+  .carta{width:85%; font-size:2.2rem;}
+  .contenido{font-size:0.95rem;}
+  .contenido h1{font-size:1.6rem;}
 }
 </style>
 </head>
@@ -122,12 +128,8 @@ body {
 
 <div class="contenido" id="contenido">
   <h1>Para ti Sofi 💖</h1>
-  <p>Eres la luz de mis ojos, la razón por la que cada día despierto con una sonrisa.  
-  Conocerte fue el regalo más hermoso que la vida me pudo dar, justo cuando más necesitaba alguien que iluminara mi camino.</p>
-
-  <p>Te amo tal y como eres, adoro tu risa, tu mirada, cada detalle que te hace única.  
-  Te quiero tal y como eres, nunca te pediría que cambies nada porque ante mis ojos eres perfecta. Cada momento contigo es un regalo, y mi corazón late más fuerte solo por ti.</p>
-
+  <p>Eres la luz de mis ojos, la razón por la que cada día despierto con una sonrisa. Conocerte fue el regalo más hermoso que la vida me pudo dar, justo cuando más necesitaba alguien que iluminara mi camino.</p>
+  <p>Te amo tal y como eres, adoro tu risa, tu mirada, cada detalle que te hace única. Te quiero tal y como eres, nunca te pediría que cambies nada porque ante mis ojos eres perfecta. Cada momento contigo es un regalo, y mi corazón late más fuerte solo por ti.</p>
   <p><strong>Te amo con todo mi ser 💕</strong></p>
 </div>
 
@@ -146,20 +148,9 @@ const simbolos=['❤','💖','💕','💓','💞','💘','💝','✨'];
 function rand(min,max){return Math.random()*(max-min)+min;}
 function choice(arr){return arr[Math.floor(Math.random()*arr.length)];}
 
-function crearCorazonFlotante(){
-  const el=document.createElement('span');
-  el.className='floating-heart';
-  el.textContent=choice(simbolos);
-  el.style.color=choice(colores);
-  el.style.left=(carta.offsetLeft+Math.random()*carta.offsetWidth)+'px';
-  el.style.top=(carta.offsetTop+Math.random()*carta.offsetHeight)+'px';
-  el.style.fontSize=rand(16,28)+'px';
-  carta.parentElement.appendChild(el);
-  setTimeout(()=>el.remove(),4000);
-}
-
+// Corazones flotando por todo el fondo
 function crearParticulaLluvia(){
-  for(let i=0;i<5;i++){
+  for(let i=0;i<8;i++){
     const el=document.createElement('span');
     el.className='particle';
     el.textContent=choice(simbolos);
@@ -171,12 +162,12 @@ function crearParticulaLluvia(){
     el.style.setProperty('--s',rand(.9,1.5));
     el.style.setProperty('--r',rand(-30,30)+'deg');
     el.style.setProperty('--dr',rand(90,360)+'deg');
-    el.style.animation=`fall ${rand(5,8).toFixed(2)}s linear forwards`;
+    el.style.animation=`fall ${rand(4,7).toFixed(2)}s linear forwards`;
     document.body.appendChild(el);
     el.addEventListener('animationend',()=>el.remove());
-  }
-}
+  }}
 
+// Explosión de corazones al abrir la carta
 function crearExplosion(x,y){
   for(let i=0;i<60;i++){
     const el=document.createElement('span');
@@ -189,15 +180,30 @@ function crearExplosion(x,y){
     el.style.top=y+'px';
     el.style.setProperty('--dx',rand(-300,300)+'px');
     el.style.setProperty('--dy',rand(-300,300)+'px');
-    el.style.animation=`popUp ${rand(1.8,3.2).toFixed(2)}s ease-out forwards`;
+    el.style.animation=`popUp ${rand(1.5,3).toFixed(2)}s ease-out forwards`;
     document.body.appendChild(el);
     el.addEventListener('animationend',()=>el.remove());
   }
 }
 
-setInterval(crearParticulaLluvia,120);
-setInterval(crearCorazonFlotante,400);
+// Corazones flotando alrededor de la carta
+function crearCorazonFlotante(){
+  const el=document.createElement('span');
+  el.className='floating-heart';
+  el.textContent=choice(simbolos);
+  el.style.color=choice(colores);
+  el.style.left=(carta.offsetLeft + Math.random()*carta.offsetWidth)+'px';
+  el.style.top=(carta.offsetTop + Math.random()*carta.offsetHeight)+'px';
+  el.style.fontSize=rand(16,28)+'px';
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),4000);
+}
 
+// Lluvia y corazones constantes
+setInterval(crearParticulaLluvia,100); // más rápida y notoria
+setInterval(crearCorazonFlotante,300);
+
+// Música
 function activarMusica(){
   if(!musicaIniciada){
     musica.play().catch(()=>{});
@@ -205,14 +211,15 @@ function activarMusica(){
   }
 }
 
+// Abrir carta
 carta.addEventListener("click",()=>{
   if(abierta) return;
   activarMusica();
-  crearExplosion(window.innerWidth/2,window.innerHeight/2);
+  crearExplosion(window.innerWidth/2, window.innerHeight/2);
   setTimeout(()=>{
     carta.style.display='none';
     contenido.style.display='block';
-  },400);
+  },300); // más rápida apertura
 });
 </script>
 </body>

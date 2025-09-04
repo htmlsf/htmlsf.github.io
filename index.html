@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💌 Carta de Amor para Sofi 💌</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rosa1: #ff4d6d;
+  --rosa2: #ff758f;
+  --rosa3: #ffb3c1;
+  --rosa4: #ffe0eb;
+}
+
+*{margin:0; padding:0; box-sizing:border-box;}
+
+body {
+  height:100vh; width:100vw;
+  display:flex; justify-content:center; align-items:center;
+  overflow:hidden;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  background: linear-gradient(-45deg, #ff758f, #ffb3c1, #ffe0eb, #ff4d6d);
+  background-size: 400% 400%;
+  animation: gradientAnim 20s ease infinite;
+}
+
+@keyframes gradientAnim {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+
+/* Destellos de fondo más visibles */
+.background-particle {
+  position: fixed;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  animation: bgFloat 10s linear infinite;
+  opacity: 0.8;
+}
+@keyframes bgFloat {
+  0% { transform: translate(0,0) scale(var(--s,0.5)); opacity:0.5;}
+  50% { transform: translate(var(--dx,0px), var(--dy,0px)) scale(var(--s,1)); opacity:1;}
+  100% { transform: translate(calc(var(--dx,0px)*2), calc(var(--dy,0px)*2)) scale(var(--s,0.5)); opacity:0.5;}
+}
+
+/* Carta */
+.carta {
+  width:320px; height:230px;
+  position:relative;
+  border-radius:25px;
+  background: linear-gradient(135deg, var(--rosa1), var(--rosa2));
+  box-shadow: 0 0 50px rgba(255,117,143,0.7), inset 0 0 25px rgba(255,255,255,0.3);
+  display:flex; justify-content:center; align-items:center;
+  font-size:2.5rem; color:white;
+  cursor:pointer;
+  z-index:10;
+  animation: latido 2s ease-in-out infinite alternate,
+             balanceo 4s ease-in-out infinite alternate,
+             brillo 3s ease-in-out infinite alternate;
+  transition: all 0.3s ease;
+}
+.carta:hover{
+  transform: scale(1.1) rotate(0deg);
+  box-shadow:0 0 80px rgba(255,117,143,1), inset 0 0 30px rgba(255,255,255,0.4);
+}
+@keyframes latido {0%{transform:scale(1);}50%{transform:scale(1.08);}100%{transform:scale(1);}}
+@keyframes balanceo {0%{transform:translateX(0px) rotate(-2deg);}50%{transform:translateX(5px) rotate(2deg);}100%{transform:translateX(0px) rotate(-2deg);}}
+@keyframes brillo {0%{box-shadow:0 0 40px rgba(255,117,143,0.5), inset 0 0 20px rgba(255,255,255,0.2);}50%{box-shadow:0 0 80px rgba(255,117,143,0.9), inset 0 0 35px rgba(255,255,255,0.4);}100%{box-shadow:0 0 40px rgba(255,117,143,0.5), inset 0 0 20px rgba(255,255,255,0.2);}}
+
+.carta .corazon-corner {
+  position:absolute;
+  top:5px;
+  left:5px;
+  font-size:28px;
+  animation: cornerFlotar 2s ease-in-out infinite alternate;
+}
+@keyframes cornerFlotar {0%{transform:translate(0,0) scale(1);opacity:0.8;}50%{transform:translate(0,-6px) scale(1.3);opacity:1;}100%{transform:translate(0,0) scale(1);opacity:0.8;}}
+
+/* Contenido carta */
+.contenido {
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  background:rgba(0,0,0,0.85);
+  padding:35px 45px;
+  border-radius:25px;
+  text-align:center;
+  max-width:700px;
+  display:none;
+  color:var(--rosa4);
+  box-shadow:0 0 70px rgba(255,117,143,1), inset 0 0 30px rgba(255,255,255,0.2);
+  font-family: 'Poppins', sans-serif;
+  animation: aparecer 0.8s ease forwards;
+  z-index:20;
+}
+@keyframes aparecer {from{opacity:0; transform:translate(-50%,-55%) scale(0.8);}to{opacity:1; transform:translate(-50%,-50%) scale(1);}}
+.contenido h1 {color:var(--rosa2);text-shadow:0 0 20px var(--rosa3),0 0 35px var(--rosa1);margin-bottom:20px;font-size:2.3rem;}
+.contenido p {font-size:1.35rem; line-height:1.8;margin-bottom:15px;}
+
+/* Corazones y partículas */
+.particle{
+  position: fixed;
+  user-select:none;
+  pointer-events:none;
+  z-index:1;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.7));
+  animation: colorPulse 2s infinite alternate;
+}
+@keyframes fall {0%{transform:translateY(-10vh) scale(var(--s,1)) rotate(var(--r,0deg));opacity:1;}100%{transform:translateY(110vh) scale(var(--s,1)) rotate(calc(var(--r,0deg)+var(--dr,360deg)));opacity:0;}}
+@keyframes popUp {0%{transform:translate(-50%,-50%) scale(0.5);opacity:1;}100%{transform:translate(calc(-50%+var(--dx,0px)),calc(-50%+var(--dy,0px))) scale(1.6);opacity:0;}}
+@keyframes colorPulse {0%{color:#ff4d6d;}50%{color:#ffb3c1;}100%{color:#ff758f;}}
+
+/* Corazones flotando alrededor carta */
+.floating-heart {position:absolute;font-size:18px;animation:float 4s ease-in-out infinite alternate;opacity:0.9;}
+@keyframes float {0%{transform:translate(0,0) scale(1);}50%{transform:translate(0,-18px) scale(1.25);}100%{transform:translate(0,0) scale(1);}}
+</style>
+</head>
+<body>
+
+<div class="carta" id="carta">
+  💌
+  <span class="corazon-corner">💖</span>
+</div>
+
+<div class="contenido" id="contenido">
+  <h1>Para ti Sofi 💖</h1>
+  <p>Eres la luz de mis ojos, la razón por la que cada día despierto con una sonrisa.  
+    Conocerte fue el regalo más hermoso que la vida me pudo dar, justo cuando más necesitaba alguien que iluminara mi camino.</p>
+
+  <p>Te amo tal y como eres, adoro tu risa, tu mirada, cada detalle que te hace única.  
+    Te quiero tal y como eres nunca te pediría que cambies nada porque ante mis ojos eres perfecta. Cada momento contigo es un regalo.</p>
+  <p><strong>Te amo con todo mi ser 💕</strong></p>
+</div>
+
+<audio id="musica" src="cancion1.mp3" preload="auto" loop></audio>
+
+<script>
+const carta=document.getElementById("carta");
+const contenido=document.getElementById("contenido");
+const musica=document.getElementById("musica");
+let musicaIniciada=false;
+let abierta=false;
+
+const colores=['#ff4d6d','#ff758f','#ffb3c1','#ff6b6b','#ff8fab','#ffc2d1','#fff0f6'];
+const simbolos=['❤','💖','💕','💓','💞','💘','💝','✨'];
+
+function rand(min,max){return Math.random()*(max-min)+min;}
+function choice(arr){return arr[Math.floor(Math.random()*arr.length)];}
+
+function crearCorazonFlotante(){
+  const el=document.createElement('span');
+  el.className='floating-heart';
+  el.textContent=choice(simbolos);
+  el.style.color=choice(colores);
+  el.style.left=(carta.offsetLeft+Math.random()*carta.offsetWidth)+'px';
+  el.style.top=(carta.offsetTop+Math.random()*carta.offsetHeight)+'px';
+  el.style.fontSize=rand(16,28)+'px';
+  carta.parentElement.appendChild(el);
+  setTimeout(()=>el.remove(),4000);
+}
+
+function crearParticulaLluvia(){
+  for(let i=0;i<5;i++){ // más partículas
+    const el=document.createElement('span');
+    el.className='particle';
+    el.textContent=choice(simbolos);
+    el.style.fontSize=rand(25,50)+'px'; // más grandes
+    el.style.fontWeight=900;
+    el.style.color=choice(colores);
+    el.style.left=rand(0,window.innerWidth)+'px';
+    el.style.top='-50px';
+    el.style.setProperty('--s',rand(.9,1.5));
+    el.style.setProperty('--r',rand(-30,30)+'deg');
+    el.style.setProperty('--dr',rand(90,360)+'deg');
+    el.style.animation=`fall ${rand(5,8).toFixed(2)}s linear forwards`;
+    document.body.appendChild(el);
+    el.addEventListener('animationend',()=>el.remove());
+  }
+}
+
+function crearExplosion(x,y){
+  for(let i=0;i<60;i++){
+    const el=document.createElement('span');
+    el.className='particle';
+    el.textContent=choice(simbolos);
+    el.style.fontSize=rand(25,50)+'px';
+    el.style.fontWeight=900;
+    el.style.color=choice(colores);
+    el.style.left=x+'px';
+    el.style.top=y+'px';
+    el.style.setProperty('--dx',rand(-300,300)+'px');
+    el.style.setProperty('--dy',rand(-300,300)+'px');
+    el.style.animation=`popUp ${rand(1.8,3.2).toFixed(2)}s ease-out forwards`;
+    document.body.appendChild(el);
+    el.addEventListener('animationend',()=>el.remove());
+  }
+}
+
+function crearDestellosFondo(){
+  const el=document.createElement('div');
+  el.className='background-particle';
+  el.style.left=rand(0,window.innerWidth)+'px';
+  el.style.top=rand(0,window.innerHeight)+'px';
+  el.style.setProperty('--dx',rand(-80,80)+'px'); // más movimiento
+  el.style.setProperty('--dy',rand(-80,80)+'px');
+  el.style.width=rand(4,8)+'px';
+  el.style.height=rand(4,8)+'px';
+  el.style.background='rgba(255,255,255,'+rand(0.6,1)+')';
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),10000);
+}
+
+setInterval(crearParticulaLluvia,120); // más frecuente
+setInterval(crearCorazonFlotante,400);
+setInterval(crearDestellosFondo,300);
+
+function activarMusica(){
+  if(!musicaIniciada){
+    musica.play().catch(()=>{});
+    musicaIniciada=true;
+  }
+}
+
+carta.addEventListener("click",()=>{
+  if(abierta) return;
+  activarMusica();
+  crearExplosion(window.innerWidth/2,window.innerHeight/2);
+  setTimeout(()=>{
+    carta.style.display='none';
+    contenido.style.display='block';
+  },400);
+});
+</script>
+</body>
+</html>

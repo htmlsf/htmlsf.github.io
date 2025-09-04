@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>💌💌</title>
+<title>💌</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -34,7 +34,8 @@ body {
 
 /* Carta */
 .carta {
-  width:320px; height:230px;
+  width: min(90%, 400px); /* ancho responsivo */
+  aspect-ratio: 16/11;    /* mantiene proporción */
   position:relative;
   border-radius:25px;
   background:linear-gradient(135deg,var(--rosa1),var(--rosa2));
@@ -83,7 +84,7 @@ body {
   color:var(--rosa4);
   box-shadow:0 0 70px rgba(255,117,143,1), inset 0 0 30px rgba(255,255,255,0.2);
   font-family:'Poppins', sans-serif;
-  animation: aparecer 0.4s ease forwards; /* apertura más rápida */
+  animation: aparecer 0.4s ease forwards;
   z-index:20;
   overflow-y:auto;
 }
@@ -107,7 +108,7 @@ body {
 
 @keyframes colorPulse {0%{color:#ff4d6d;}50%{color:#ffb3c1;}100%{color:#ff758f;}}
 
-/* Partículas flotantes de corazón */
+/* Corazones flotantes alrededor carta */
 .floating-heart {position:absolute;font-size:18px;animation:float 4s ease-in-out infinite alternate;opacity:0.9;}
 @keyframes float{0%{transform:translate(0,0) scale(1);}50%{transform:translate(0,-18px) scale(1.25);}100%{transform:translate(0,0) scale(1);}}
 
@@ -148,7 +149,7 @@ const simbolos=['❤','💖','💕','💓','💞','💘','💝','✨'];
 function rand(min,max){return Math.random()*(max-min)+min;}
 function choice(arr){return arr[Math.floor(Math.random()*arr.length)];}
 
-// Corazones flotando por todo el fondo
+// Lluvia de corazones por todo el fondo
 function crearParticulaLluvia(){
   for(let i=0;i<8;i++){
     const el=document.createElement('span');
@@ -165,9 +166,10 @@ function crearParticulaLluvia(){
     el.style.animation=`fall ${rand(4,7).toFixed(2)}s linear forwards`;
     document.body.appendChild(el);
     el.addEventListener('animationend',()=>el.remove());
-  }}
+  }
+}
 
-// Explosión de corazones al abrir la carta
+// Explosión al abrir carta
 function crearExplosion(x,y){
   for(let i=0;i<60;i++){
     const el=document.createElement('span');
@@ -186,7 +188,7 @@ function crearExplosion(x,y){
   }
 }
 
-// Corazones flotando alrededor de la carta
+// Corazones flotantes alrededor carta
 function crearCorazonFlotante(){
   const el=document.createElement('span');
   el.className='floating-heart';
@@ -199,11 +201,10 @@ function crearCorazonFlotante(){
   setTimeout(()=>el.remove(),4000);
 }
 
-// Lluvia y corazones constantes
-setInterval(crearParticulaLluvia,100); // más rápida y notoria
+// Intervalos
+setInterval(crearParticulaLluvia,100);
 setInterval(crearCorazonFlotante,300);
 
-// Música
 function activarMusica(){
   if(!musicaIniciada){
     musica.play().catch(()=>{});
@@ -219,9 +220,8 @@ carta.addEventListener("click",()=>{
   setTimeout(()=>{
     carta.style.display='none';
     contenido.style.display='block';
-  },300); // más rápida apertura
+  },300);
 });
 </script>
 </body>
 </html>
-

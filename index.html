@@ -32,25 +32,9 @@ body {
   100% {background-position:0% 50%;}
 }
 
-/* Destellos de fondo más visibles */
-.background-particle {
-  position: fixed;
-  border-radius: 50%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  animation: bgFloat 10s linear infinite;
-  opacity: 0.8;
-}
-@keyframes bgFloat {
-  0% { transform: translate(0,0) scale(var(--s,0.5)); opacity:0.5;}
-  50% { transform: translate(var(--dx,0px), var(--dy,0px)) scale(var(--s,1)); opacity:1;}
-  100% { transform: translate(calc(var(--dx,0px)*2), calc(var(--dy,0px)*2)) scale(var(--s,0.5)); opacity:0.5;}
-}
-
 /* Carta */
 .carta {
-  width:90%; max-width:320px; height:auto; padding:40px 0;
+  width:90%; max-width:320px; height:auto; padding:35px 0;
   position:relative;
   border-radius:25px;
   background: linear-gradient(135deg, var(--rosa1), var(--rosa2));
@@ -62,7 +46,6 @@ body {
   animation: latido 2s ease-in-out infinite alternate,
              balanceo 4s ease-in-out infinite alternate,
              brillo 3s ease-in-out infinite alternate;
-  transition: all 0.3s ease;
   text-align:center;
 }
 .carta:hover{
@@ -84,26 +67,27 @@ body {
 
 /* Contenido carta */
 .contenido {
-  position:absolute;
+  position:fixed;
   top:50%; left:50%;
   transform:translate(-50%,-50%);
   background:rgba(0,0,0,0.85);
-  padding:25px 20px;
+  padding:20px 15px;
   border-radius:25px;
   text-align:center;
   max-width:90%;
-  width:450px;
+  width:90%;
+  max-height:90%;
   display:none;
   color:var(--rosa4);
   box-shadow:0 0 70px rgba(255,117,143,1), inset 0 0 30px rgba(255,255,255,0.2);
   font-family: 'Poppins', sans-serif;
   animation: aparecer 0.8s ease forwards;
   z-index:20;
-  overflow-wrap: break-word;
+  overflow-y:auto; /* permite scroll en móviles */
 }
 @keyframes aparecer {from{opacity:0; transform:translate(-50%,-55%) scale(0.8);}to{opacity:1; transform:translate(-50%,-50%) scale(1);} }
 .contenido h1 {color:var(--rosa2);text-shadow:0 0 20px var(--rosa3),0 0 35px var(--rosa1);margin-bottom:20px;font-size:2rem; word-break: break-word;}
-.contenido p {font-size:1rem; line-height:1.6; margin-bottom:12px; text-align:center;}
+.contenido p {font-size:1rem; line-height:1.6; margin-bottom:12px; text-align:center; word-break: break-word;}
 
 /* Corazones y partículas */
 .particle{
@@ -112,11 +96,9 @@ body {
   pointer-events:none;
   z-index:1;
   filter: drop-shadow(0 0 8px rgba(255,255,255,0.7));
-  animation: colorPulse 2s infinite alternate;
 }
 @keyframes fall {0%{transform:translateY(-10vh) scale(var(--s,1)) rotate(var(--r,0deg));opacity:1;}100%{transform:translateY(110vh) scale(var(--s,1)) rotate(calc(var(--r,0deg)+var(--dr,360deg)));opacity:0;} }
 @keyframes popUp {0%{transform:translate(-50%,-50%) scale(0.5);opacity:1;}100%{transform:translate(calc(-50%+var(--dx,0px)),calc(-50%+var(--dy,0px))) scale(1.6);opacity:0;} }
-@keyframes colorPulse {0%{color:#ff4d6d;}50%{color:#ffb3c1;}100%{color:#ff758f;} }
 
 /* Corazones flotando alrededor carta */
 .floating-heart {position:absolute;font-size:18px;animation:float 4s ease-in-out infinite alternate;opacity:0.9;}
@@ -124,8 +106,8 @@ body {
 
 /* Ajustes responsive móviles */
 @media (max-width:500px){
-  .carta {font-size:2.2rem; padding:30px 0; max-width:280px;}
-  .contenido {font-size:0.95rem; padding:20px 15px; width:85%;}
+  .carta {font-size:2.2rem; padding:25px 0; max-width:85%;}
+  .contenido {font-size:0.95rem; padding:15px 10px; width:90%;}
   .contenido h1 {font-size:1.6rem;}
 }
 </style>
@@ -232,20 +214,19 @@ setInterval(crearDestellosFondo,300);
 
 function activarMusica(){
   if(!musicaIniciada){
-    musica.play().catch(()=>{
-    });
-    musicaIniciada = true;
+    musica.play().catch(()=>{});
+    musicaIniciada=true;
   }
 }
 
-carta.addEventListener("click", () => {
+carta.addEventListener("click",()=>{
   if(abierta) return;
   activarMusica();
-  crearExplosion(window.innerWidth/2, window.innerHeight/2);
-  setTimeout(() => {
-    carta.style.display = 'none';
-    contenido.style.display = 'block';
-  }, 400); // esperar a que la explosión se vea
+  crearExplosion(window.innerWidth/2,window.innerHeight/2);
+  setTimeout(()=>{
+    carta.style.display='none';
+    contenido.style.display='block';
+  },400);
 });
 </script>
 </body>

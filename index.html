@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>💌</title>
+<title>💌 💌</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -44,19 +44,27 @@ body {
   cursor:pointer;
   z-index:10;
   text-align:center;
-  /* Solo animación de brillo, latido muy suave y sin balanceo horizontal */
   animation: latido 1.8s ease-in-out infinite alternate,
              brillo 3s ease-in-out infinite alternate;
   will-change: transform;
 }
+
 .carta:hover{
   transform: scale(1.08);
   box-shadow:0 0 80px rgba(255,117,143,1), inset 0 0 30px rgba(255,255,255,0.4);
 }
-@keyframes latido {0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);}}
-@keyframes brillo {0%{box-shadow:0 0 40px rgba(255,117,143,0.5), inset 0 0 20px rgba(255,255,255,0.2);}50%{box-shadow:0 0 70px rgba(255,117,143,0.8), inset 0 0 30px rgba(255,255,255,0.4);}100%{box-shadow:0 0 40px rgba(255,117,143,0.5), inset 0 0 20px rgba(255,255,255,0.2);}}
 
-@keyframes brillo {0%{box-shadow:0 0 40px rgba(255,117,143,0.5), inset 0 0 20px rgba(255,255,255,0.2);}50%{box-shadow:0 0 80px rgba(255,117,143,0.9), inset 0 0 35px rgba(255,255,255,0.4);}100%{box-shadow:0 0 40px rgba(255,117,143,0.5), inset 0 0 20px rgba(255,255,255,0.2);} }
+@keyframes latido {
+  0%{transform:scale(1);}
+  50%{transform:scale(1.05);}
+  100%{transform:scale(1);}
+}
+
+@keyframes brillo {
+  0%{box-shadow:0 0 40px rgba(255,117,143,0.5), inset 0 0 20px rgba(255,255,255,0.2);}
+  50%{box-shadow:0 0 70px rgba(255,117,143,0.8), inset 0 0 30px rgba(255,255,255,0.4);}
+  100%{box-shadow:0 0 40px rgba(255,117,143,0.5), inset 0 0 20px rgba(255,255,255,0.2);}
+}
 
 .carta .corazon-corner {
   position:absolute;
@@ -196,23 +204,8 @@ function crearExplosion(x,y){
   }
 }
 
-function crearDestellosFondo(){
-  const el=document.createElement('div');
-  el.className='background-particle';
-  el.style.left=rand(0,window.innerWidth)+'px';
-  el.style.top=rand(0,window.innerHeight)+'px';
-  el.style.setProperty('--dx',rand(-80,80)+'px');
-  el.style.setProperty('--dy',rand(-80,80)+'px');
-  el.style.width=rand(4,8)+'px';
-  el.style.height=rand(4,8)+'px';
-  el.style.background='rgba(255,255,255,'+rand(0.6,1)+')';
-  document.body.appendChild(el);
-  setTimeout(()=>el.remove(),10000);
-}
-
 setInterval(crearParticulaLluvia,120);
 setInterval(crearCorazonFlotante,400);
-setInterval(crearDestellosFondo,300);
 
 function activarMusica(){
   if(!musicaIniciada){
@@ -233,5 +226,3 @@ carta.addEventListener("click",()=>{
 </script>
 </body>
 </html>
-
-
